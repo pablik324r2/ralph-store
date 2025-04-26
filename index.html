@@ -2,39 +2,45 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Ralph Store | Telegram</title>
+  <title>Ralph Store | Переход в Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
-      text-align: center;
-      color: #333;
     }
-    a.button {
-      margin-top: 20px;
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    button {
       padding: 15px 30px;
       font-size: 18px;
-      background-color: #007bff;
+      background-color: #0088cc;
       color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
-    a.button:hover {
-      background-color: #0056b3;
+    button:hover {
+      background-color: #006699;
     }
   </style>
 </head>
 <body>
-  <h1>Ralph Store</h1>
-  <p>Найди свой стиль! Жми кнопку ниже, чтобы попасть в наш Telegram-канал:</p>
-  <a class="button" href="https://t.me/ralph_store" target="_blank">Перейти в Telegram</a>
+  <h1>Переход в наш Telegram-канал</h1>
+  <button onclick="goToTelegram()">Перейти в Telegram</button>
+
+  <script>
+    function goToTelegram() {
+      window.location.href = "https://t.me/ralph_store";
+    }
+  </script>
 </body>
 </html>
