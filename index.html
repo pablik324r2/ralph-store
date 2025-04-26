@@ -14,13 +14,18 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
+      padding: 20px;
       text-align: center;
     }
     h1 {
       color: #333;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #666;
       margin-bottom: 20px;
     }
-    button {
+    button, a {
       padding: 15px 30px;
       font-size: 18px;
       background-color: #0088cc;
@@ -28,27 +33,62 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      text-decoration: none;
+      margin: 10px;
+      display: inline-block;
     }
-    button:hover {
+    button:hover, a:hover {
       background-color: #006699;
+    }
+    #browserInstruction {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>Переход в наш Telegram-канал</h1>
-  <button onclick="openTelegram()">Открыть Telegram</button>
+  <h1 id="title">Переход в Telegram</h1>
+  <p id="description">Подождите, сейчас перенаправим вас...</p>
+
+  <div id="browserInstruction">
+    <p>Вы находитесь в приложении TikTok.<br>Чтобы продолжить:</p>
+    <p><strong>Нажмите на три точки в правом верхнем углу → "Открыть в браузере"</strong>.</p>
+    <p>Или нажмите кнопку ниже:</p>
+    <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
+  </div>
 
   <script>
-    function openTelegram() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      
-      if (/android/i.test(userAgent)) {
-        // Если Android — используем intent://
+    function isTikTokWebView() {
+      return navigator.userAgent.includes("TikTok");
+    }
+
+    function isAndroid() {
+      return /android/i.test(navigator.userAgent);
+    }
+
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function redirectToTelegram() {
+      if (isAndroid()) {
+        // Android - пробуем через intent://
         window.location.href = "intent://t.me/ralph_store#Intent;package=org.telegram.messenger;scheme=https;end";
       } else {
-        // Если iPhone или другие — просто откроем ссылку
+        // iPhone или другое - обычная ссылка
         window.location.href = "https://t.me/ralph_store";
       }
+    }
+
+    if (isTikTokWebView()) {
+      // Если в TikTok браузере
+      document.getElementById('title').innerText = "Откройте через браузер";
+      document.getElementById('description').innerText = "К сожалению, TikTok блокирует автоматические переходы. Пожалуйста, откройте эту страницу в браузере.";
+      document.getElementById('browserInstruction').style.display = "block";
+    } else {
+      // Если НЕ TikTok — сразу редиректим
+      setTimeout(() => {
+        redirectToTelegram();
+      }, 1500); // Небольшая задержка для плавности
     }
   </script>
 </body>
