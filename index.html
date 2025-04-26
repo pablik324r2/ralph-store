@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Ralph Store | Переход в Telegram</title>
+  <title>Ralph Store | Откройте через браузер</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -16,6 +16,7 @@
       margin: 0;
       padding: 20px;
       text-align: center;
+      position: relative;
     }
     h1 {
       color: #333;
@@ -23,7 +24,7 @@
     }
     p {
       color: #666;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     button, a {
       padding: 15px 30px;
@@ -40,56 +41,59 @@
     button:hover, a:hover {
       background-color: #006699;
     }
-    #browserInstruction {
-      display: none;
+    .notification {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.5s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-size: 16px;
+    }
+    .notification.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <h1 id="title">Переход в Telegram</h1>
-  <p id="description">Подождите, сейчас перенаправим вас...</p>
 
-  <div id="browserInstruction">
-    <p>Вы находитесь в приложении TikTok.<br>Чтобы продолжить:</p>
-    <p><strong>Нажмите на три точки в правом верхнем углу → "Открыть в браузере"</strong>.</p>
-    <p>Или нажмите кнопку ниже:</p>
-    <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
-  </div>
+  <h1>Как открыть Telegram?</h1>
+  <p>Вы находитесь в приложении TikTok или другом встроенном браузере.</p>
+  <p><strong>Чтобы перейти в Telegram:</strong></p>
+  <p>➡️ Нажмите на три точки в правом верхнем углу.<br>➡️ Выберите "Открыть в браузере".</p>
+  <p>Или скопируйте ссылку и вставьте её вручную:</p>
+
+  <button onclick="copyLink()">Скопировать ссылку</button>
+  <br>
+  <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
+
+  <div class="notification" id="notification">Ссылка скопирована!</div>
 
   <script>
-    function isTikTokWebView() {
-      return navigator.userAgent.includes("TikTok");
+    function copyLink() {
+      const link = "https://t.me/ralph_store";
+      navigator.clipboard.writeText(link).then(function() {
+        showNotification();
+      }, function(err) {
+        console.error('Ошибка копирования: ', err);
+      });
     }
 
-    function isAndroid() {
-      return /android/i.test(navigator.userAgent);
-    }
-
-    function isIOS() {
-      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
-
-    function redirectToTelegram() {
-      if (isAndroid()) {
-        // Android - пробуем через intent://
-        window.location.href = "intent://t.me/ralph_store#Intent;package=org.telegram.messenger;scheme=https;end";
-      } else {
-        // iPhone или другое - обычная ссылка
-        window.location.href = "https://t.me/ralph_store";
-      }
-    }
-
-    if (isTikTokWebView()) {
-      // Если в TikTok браузере
-      document.getElementById('title').innerText = "Откройте через браузер";
-      document.getElementById('description').innerText = "К сожалению, TikTok блокирует автоматические переходы. Пожалуйста, откройте эту страницу в браузере.";
-      document.getElementById('browserInstruction').style.display = "block";
-    } else {
-      // Если НЕ TikTok — сразу редиректим
+    function showNotification() {
+      const notification = document.getElementById('notification');
+      notification.classList.add('show');
       setTimeout(() => {
-        redirectToTelegram();
-      }, 1500); // Небольшая задержка для плавности
+        notification.classList.remove('show');
+      }, 3000);
     }
   </script>
+
 </body>
 </html>
