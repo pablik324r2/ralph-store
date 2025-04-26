@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Ralph Store | Откройте в браузере</title>
+  <title>Ralph Store | Переход в Telegram</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -15,80 +15,40 @@
       height: 100vh;
       margin: 0;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
     h1 {
       color: #333;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #666;
       margin-bottom: 20px;
-      padding: 0 20px;
     }
-    a, button {
-      display: inline-block;
+    button {
       padding: 15px 30px;
       font-size: 18px;
       background-color: #0088cc;
       color: white;
-      text-decoration: none;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      margin: 10px;
     }
-    a:hover, button:hover {
+    button:hover {
       background-color: #006699;
-    }
-    /* Стили для уведомления */
-    .notification {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all 0.5s ease;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      font-size: 16px;
-    }
-    .notification.show {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <h1>Откройте в браузере</h1>
-  <p>Если вы видите эту страницу в приложении, нажмите на "Открыть в браузере" или скопируйте ссылку ниже.</p>
-
-  <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
-  <button onclick="copyLink()">Скопировать ссылку</button>
-
-  <div class="notification" id="notification">Ссылка скопирована!</div>
+  <h1>Переход в наш Telegram-канал</h1>
+  <button onclick="openTelegram()">Открыть Telegram</button>
 
   <script>
-    function copyLink() {
-      const link = "https://t.me/ralph_store";
-      navigator.clipboard.writeText(link).then(function() {
-        showNotification();
-      }, function(err) {
-        console.error('Ошибка копирования: ', err);
-      });
-    }
-
-    function showNotification() {
-      const notification = document.getElementById('notification');
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000); // уведомление исчезает через 3 секунды
+    function openTelegram() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      if (/android/i.test(userAgent)) {
+        // Если Android — используем intent://
+        window.location.href = "intent://t.me/ralph_store#Intent;package=org.telegram.messenger;scheme=https;end";
+      } else {
+        // Если iPhone или другие — просто откроем ссылку
+        window.location.href = "https://t.me/ralph_store";
+      }
     }
   </script>
 </body>
