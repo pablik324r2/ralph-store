@@ -25,24 +25,51 @@
       margin-bottom: 20px;
       padding: 0 20px;
     }
-    a {
+    a, button {
       display: inline-block;
       padding: 15px 30px;
       font-size: 18px;
       background-color: #0088cc;
       color: white;
       text-decoration: none;
+      border: none;
       border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
     }
-    a:hover {
+    a:hover, button:hover {
       background-color: #006699;
+    }
+    .copied {
+      margin-top: 15px;
+      color: green;
+      font-size: 16px;
+      display: none;
     }
   </style>
 </head>
 <body>
   <h1>Откройте в браузере</h1>
   <p>Если вы видите эту страницу в приложении, нажмите на "Открыть в браузере" или скопируйте ссылку ниже.</p>
+
   <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
-  <p>Или скопируйте ссылку:<br><strong>https://t.me/ralph_store</strong></p>
+  <button onclick="copyLink()">Скопировать ссылку</button>
+
+  <div class="copied" id="copiedMessage">Ссылка скопирована!</div>
+
+  <script>
+    function copyLink() {
+      const link = "https://t.me/ralph_store";
+      navigator.clipboard.writeText(link).then(function() {
+        const message = document.getElementById('copiedMessage');
+        message.style.display = 'block';
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 3000);
+      }, function(err) {
+        console.error('Ошибка копирования: ', err);
+      });
+    }
+  </script>
 </body>
 </html>
