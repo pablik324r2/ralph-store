@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Ralph Store | Переход в Telegram</title>
+  <title>Ralph Store | Откройте в браузере</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -14,33 +14,35 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
+      text-align: center;
     }
     h1 {
       color: #333;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
-    button {
+    p {
+      color: #666;
+      margin-bottom: 20px;
+      padding: 0 20px;
+    }
+    a {
+      display: inline-block;
       padding: 15px 30px;
       font-size: 18px;
       background-color: #0088cc;
       color: white;
-      border: none;
+      text-decoration: none;
       border-radius: 8px;
-      cursor: pointer;
     }
-    button:hover {
+    a:hover {
       background-color: #006699;
     }
   </style>
 </head>
 <body>
-  <h1>Переход в наш Telegram-канал</h1>
-  <button onclick="goToTelegram()">Перейти в Telegram</button>
-
-  <script>
-    function goToTelegram() {
-      window.location.href = "https://t.me/ralph_store";
-    }
-  </script>
+  <h1>Откройте в браузере</h1>
+  <p>Если вы видите эту страницу в приложении, нажмите на "Открыть в браузере" или скопируйте ссылку ниже.</p>
+  <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
+  <p>Или скопируйте ссылку:<br><strong>https://t.me/ralph_store</strong></p>
 </body>
 </html>
