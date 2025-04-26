@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Ralph Store | Откройте через браузер</title>
+  <title>Ralph Store | Откройте в браузере</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -14,9 +14,7 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      padding: 20px;
       text-align: center;
-      position: relative;
     }
     h1 {
       color: #333;
@@ -24,76 +22,27 @@
     }
     p {
       color: #666;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      padding: 0 20px;
     }
-    button, a {
+    a {
+      display: inline-block;
       padding: 15px 30px;
       font-size: 18px;
       background-color: #0088cc;
       color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
       text-decoration: none;
-      margin: 10px;
-      display: inline-block;
-    }
-    button:hover, a:hover {
-      background-color: #006699;
-    }
-    .notification {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 25px;
       border-radius: 8px;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all 0.5s ease;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      font-size: 16px;
     }
-    .notification.show {
-      opacity: 1;
-      transform: translateY(0);
+    a:hover {
+      background-color: #006699;
     }
   </style>
 </head>
 <body>
-
-  <h1>Как открыть Telegram?</h1>
-  <p>Вы находитесь в приложении TikTok или другом встроенном браузере.</p>
-  <p><strong>Чтобы перейти в Telegram:</strong></p>
-  <p>➡️ Нажмите на три точки в правом верхнем углу.<br>➡️ Выберите "Открыть в браузере".</p>
-  <p>Или скопируйте ссылку и вставьте её вручную:</p>
-
-  <button onclick="copyLink()">Скопировать ссылку</button>
-  <br>
+  <h1>Откройте в браузере</h1>
+  <p>Если вы видите эту страницу в приложении, нажмите на "Открыть в браузере" или скопируйте ссылку ниже.</p>
   <a href="https://t.me/ralph_store" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
-
-  <div class="notification" id="notification">Ссылка скопирована!</div>
-
-  <script>
-    function copyLink() {
-      const link = "https://t.me/ralph_store";
-      navigator.clipboard.writeText(link).then(function() {
-        showNotification();
-      }, function(err) {
-        console.error('Ошибка копирования: ', err);
-      });
-    }
-
-    function showNotification() {
-      const notification = document.getElementById('notification');
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
-    }
-  </script>
-
+  <p>Или скопируйте ссылку:<br><strong>https://t.me/ralph_store</strong></p>
 </body>
 </html>
