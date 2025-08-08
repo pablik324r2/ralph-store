@@ -12,9 +12,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       text-align: center;
+      padding: 20px;
+    }
+    img.logo {
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 20px;
     }
     h1 {
       color: #333;
@@ -24,6 +30,7 @@
       color: #666;
       margin-bottom: 20px;
       padding: 0 20px;
+      line-height: 1.5;
     }
     a, button {
       display: inline-block;
@@ -36,6 +43,7 @@
       border-radius: 8px;
       cursor: pointer;
       margin: 10px;
+      transition: background-color 0.3s;
     }
     a:hover, button:hover {
       background-color: #006699;
@@ -49,9 +57,12 @@
   </style>
 </head>
 <body>
-  <h1>Нажми ...</h1>
-  <h1>Открыть в браузере</h1>
-  <p>Если вы видите эту страницу в приложении, нажмите на "..." в углу. "Открыть в браузере" или скопируйте ссылку ниже.</p>
+
+  <!-- Логотип -->
+  <img src="IMG_1387.JPG" alt="Ralph Store" class="logo">
+
+  <h1>Нажми "..." и выбери «Открыть в браузере»</h1>
+  <p>Если вы видите эту страницу в приложении TikTok, нажмите на значок "..." в углу, выберите «Открыть в браузере» или скопируйте ссылку ниже и вставьте её в ваш браузер.</p>
 
   <a href="https://t.me/+oubhP3GO9ng5NThi" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
   <button onclick="copyLink()">Скопировать ссылку</button>
@@ -72,5 +83,6 @@
       });
     }
   </script>
+
 </body>
 </html>
